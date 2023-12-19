@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Cat Emporium</title>
+  <link rel="favicon" type="image/x-icon" href="Assets/Images/favicon.png">
+  <link href="Styles/style.css" rel="stylesheet" type="text/css" />
+  <script src="Scripts/script.js" defer></script>
+</head>
+
+<body>
+    <section class="menu">
+        <!--Menus to filter images gotten, filter by:
+        - cat position on photo
+        - color
+        - still image or gif
+        - perfectly square image or not
+        - quantity of cats (no more than 20)
+        - TODO: if have time, perhaps even integrate cat gif maker using the API text input
+        -->
+        <!--Template for dropdown menus-->
+        <!--
+        <select name="" id="">
+            <option value="">optionName</option>
+        </select>
+        -->
+
+        <select name="Position" id="catPos">
+            <option value="null" selected="selected">Select a cat position</option>
+            <option value="leftTop">Left Top</option>
+            <option value="centerTop">Center Top</option>
+            <option value="rightTop">Right Top</option>
+            <option value="left">Left</option>
+            <option value="center">Center</option>
+            <option value="right">Right</option>
+            <option value="leftBottom">Left Bottom</option>
+            <option value="centerBottom">Center Bottom</option>
+            <option value="rightBottom">Right Bottom</option>
+        </select>
+        <select name="Color" id="catColor">
+            <option value="null" selected="selected">Select a cat color</option>
+            <option value="black">Black</option>
+            <option value="dark grey">Dark Grey</option>
+            <option value="light grey">Light Grey</option>
+            <option value="orange">Orange</option>
+            <option value="white">White</option>
+            <option value="tuxedo">Tuxedo</option>
+            <option value="tabby">Tabby</option>
+            <option value="calico">Calico</option>
+            <option value="pointed">Pointed</option>
+        </select>
+        <select name="animated" id="catAnimated">
+            <option value="null" selected="selected">Select normal/GIF image</option>
+            <option value="stillImage">Image</option>
+            <option value="gif">GIF</option>
+        </select>
+        <input type="text" id="countInput" placeholder="Choose how many cats you want (max 50)">
+        <input type="text" id="tagInput" placeholder="Choose any tag you want!">
+        <input type="button" id="reloadBtn" value="Search Cats!">
+    </section>
+
+    <section class="cat gallery" id="gallery">
+
+    </section>
+</body>
+
+</html>
