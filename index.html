@@ -6,7 +6,9 @@
   <title>Cat Emporium</title>
   <link rel="favicon" type="image/x-icon" href="Assets/Images/favicon.png">
   <link href="Styles/style.css" rel="stylesheet" type="text/css" />
-  <script src="Scripts/script.js" defer></script>
+  <script src="Scripts/script.js" type="module" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js"></script>
 </head>
 
 <body>
@@ -18,6 +20,7 @@
         - perfectly square image or not
         - quantity of cats (no more than 20)
         - TODO: if have time, perhaps even integrate cat gif maker using the API text input
+        - TODO how tf am I gonna introduce ordering? By image size? The API doesn't have much like that
         -->
         <!--Template for dropdown menus-->
         <!--
@@ -55,13 +58,17 @@
             <option value="stillImage">Image</option>
             <option value="gif">GIF</option>
         </select>
-        <input type="text" id="countInput" placeholder="Choose how many cats you want (max 50)">
+        <input type="text" id="countInput" placeholder="Choose how many cats per column (max 20)">
         <input type="text" id="tagInput" placeholder="Choose any tag you want!">
         <input type="button" id="reloadBtn" value="Search Cats!">
     </section>
 
-    <section class="cat gallery" id="gallery">
-
+    <section class="cat-gallery" id="gallery">
+        <!--Done this way cuz its the easier one, and remains decent looking enough-->
+        <div class="galleryColumn" id="imgCol1"></div>
+        <div class="galleryColumn" id="imgCol2"></div>
+        <div class="galleryColumn" id="imgCol3"></div>
+        <div class="galleryColumn" id="imgCol4"></div>
     </section>
 </body>
 
