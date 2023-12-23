@@ -1,4 +1,4 @@
-import { giveTestURL } from "./catAPI";
+import { giveTestURL } from "./catAPI.js";
 
 const regularRequest = 'https://cataas.com/cat?position=centre';
 

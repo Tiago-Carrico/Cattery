@@ -1,4 +1,4 @@
-import { getRandomIntInterval } from "./random";
+import { getRandomIntInterval } from "./random.js";
 
 const regularBaseRequest = 'https://cataas.com/cat?position=centre';
 
