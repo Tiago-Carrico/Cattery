@@ -1,4 +1,4 @@
-import { giveTestURL } from "./catAPI.js";
+//import {giveTestURL} from "./Scripts/catAPI.js";
 
 const regularRequest = 'https://cataas.com/cat?position=centre';
 
@@ -36,9 +36,10 @@ cols.push(document.getElementById("imgCol1"),document.getElementById("imgCol2"),
 document.addEventListener('DOMContentLoaded', () => {
     //TODO if possible, recheck how to do a masonry layout
     //TODO replace 7 with the amount specified in the frontend
+
     for (let col of cols){
         for(let i = 0; i < count; i++){
-            fetch(giveTestURL, {
+            fetch(giveTestURL(), {
                 method: 'GET'
             })
             .then(response => response.blob())
@@ -73,4 +74,32 @@ function reloadCats(){
 //Function to make the query to fetch based on the filters set? Or is there a better way to do this?
 function makeQuery(){
 
+}
+
+
+
+//TODO try to put the functions bellow in other files to better organize, but for now it's complaining about file not being MIME type or something
+
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+}
+
+const getRandomIntInterval = (max, min) => {
+    return Math.floor(Math.random() * (max - min)) + min;
+};
+
+
+const regularBaseRequest = 'https://cataas.com/cat?position=centre';
+
+const testBaseRequest = 'https://picsum.photos';
+
+function buildTestURL(height, width) {
+    const testAdd = "/" + width + "/" + height;
+
+    const url = new URL(testAdd, testBaseRequest);
+    return url.href;
+}
+
+const giveTestURL = () => {
+    return buildTestURL(getRandomIntInterval(200, 1200), getRandomIntInterval(200, 1200));
 }

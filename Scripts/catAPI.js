@@ -1,4 +1,4 @@
-import { getRandomIntInterval } from "./random.js";
+//import {getRandomIntInterval} from "./random.js";
 
 const regularBaseRequest = 'https://cataas.com/cat?position=centre';
 
@@ -12,6 +12,6 @@ function buildTestURL(height, width) {
     return URL;
 }
 
-export function giveTestURL(){
+const giveTestURL = () => {
     return buildTestURL(getRandomIntInterval(400, 700), getRandomIntInterval(400, 700));
 }
