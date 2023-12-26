@@ -6,3 +6,5 @@ function getRandomInt(max) {
 const getRandomIntInterval = (max, min) => {
     return Math.floor(Math.random() * (max - min)) + min;
 };
+
+export {getRandomIntInterval};

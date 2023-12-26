@@ -1,4 +1,6 @@
-//import {giveTestURL} from "./Scripts/catAPI.js";
+import {giveTestURL} from "./catAPI.js";
+import {getRandomIntInterval} from "./random.js";
+
 
 const regularRequest = 'https://cataas.com/cat?position=centre';
 
@@ -49,6 +51,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 const imageElement = document.createElement("img");
                 imageElement.classList.add("catPicture");
                 imageElement.src = imageUrl;
+                //To get a more crooked/homely appearance
+                imageElement.style.setProperty("margin-left", getRandomIntInterval(20, 100) + "px");
+                imageElement.style.setProperty("margin-right", getRandomIntInterval(20, 100) + "px");
+                
                 col.appendChild(imageElement);
             })
             .catch(error => console.error(error));
@@ -77,29 +83,3 @@ function makeQuery(){
 }
 
 
-
-//TODO try to put the functions bellow in other files to better organize, but for now it's complaining about file not being MIME type or something
-
-function getRandomInt(max) {
-    return Math.floor(Math.random() * max);
-}
-
-const getRandomIntInterval = (max, min) => {
-    return Math.floor(Math.random() * (max - min)) + min;
-};
-
-
-const regularBaseRequest = 'https://cataas.com/cat?position=centre';
-
-const testBaseRequest = 'https://picsum.photos';
-
-function buildTestURL(height, width) {
-    const testAdd = "/" + width + "/" + height;
-
-    const url = new URL(testAdd, testBaseRequest);
-    return url.href;
-}
-
-const giveTestURL = () => {
-    return buildTestURL(getRandomIntInterval(200, 1200), getRandomIntInterval(200, 1200));
-}
