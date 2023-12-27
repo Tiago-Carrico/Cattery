@@ -20,14 +20,21 @@ const container = document.getElementById("gallery");
 const cols = [];
 cols.push(document.getElementById("imgCol1"),document.getElementById("imgCol2"),document.getElementById("imgCol3"),document.getElementById("imgCol4"));
 
-const delay = ms => new Promise(res => setTimeout(res, ms));
-
+function setBackground(){
+    const root = document.querySelector(":root");
+    let r = getRandomIntInterval(0, 256);
+    let g = getRandomIntInterval(0, 256);
+    let b = getRandomIntInterval(0, 256);
+    root.style.setProperty('--wallpaperColorLight', 'rgb(' + r + ',' + g + ',' + b + ',1)');
+    root.style.setProperty('--wallpaperColorDark', 'rgb(' + (r/2) + ',' + (g/2) + ',' + (b/2) + ',1)');
+}
 
 document.addEventListener('DOMContentLoaded', async () => {
+    //Here is the random wallpaper color generator for the background
+    setBackground();
+
     //TODO if possible, recheck how to do a masonry layout
     //TODO replace 7 with the amount specified in the frontend
-
-    //getPics();
 
     for(let col of cols){
         const pics = await getPics();
@@ -39,6 +46,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             imageElement.classList.add("picture");
             imageElement.src = imageUrl;
 
+            //TODO try to find a solution that won't overextend but still looks "disorganized"
             imageElement.style.setProperty("margin-left", getRandomIntInterval(20, 100) + "px");
             imageElement.style.setProperty("margin-right", getRandomIntInterval(20, 100) + "px");
 

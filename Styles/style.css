@@ -1,4 +1,9 @@
 
+:root{
+    --wallpaperColorLight: rgb(50, 220, 100,1);
+    --wallpaperColorDark: rgb(25, 110, 50, 1);
+}
+
 
 /*Taken from https://codepen.io/dope/pen/OJOzay*/
 .picture{
@@ -33,6 +38,16 @@
 .cat-gallery{
     display: flex;
     flex-direction: row;
+}
+
+.old_wallpaper_background{
+    z-index: -1;
+    height: 500%;
+    width: 120%;
+    background: repeating-linear-gradient(-45deg, var(--wallpaperColorLight), var(--wallpaperColorLight) 75px, var(--wallpaperColorDark) 0, var(--wallpaperColorDark) 150px);
+    position: absolute;
+    top: 0px;
+    left: 0px;
 }
 
 
