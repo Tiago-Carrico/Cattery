@@ -1,33 +1,18 @@
 import {giveTestURL} from "./catAPI.js";
 import {getRandomIntInterval} from "./random.js";
-
+import {getPics} from "./picsumAPI.js";
 
 const regularRequest = 'https://cataas.com/cat?position=centre';
 
 const testRequest = 'https://picsum.photos/300/200';
 
 //Setting up elements vars
-const catPosDD = document.getElementById("catPos");
-
-
-const catColorDD = document.getElementById("catColor");
-
-
-const catGIF = document.getElementById("catAnimated");
-
 
 const countInput = document.getElementById("countInput");
 let count = 10;
 
-const tagInput = document.getElementById("tagInput");
-let tag = "";
-
-
-
 const reloadBtn = document.getElementById("reloadBtn");
 reloadBtn.addEventListener("click", reloadCats);
-
-
 
 const container = document.getElementById("gallery");
 
@@ -35,10 +20,32 @@ const container = document.getElementById("gallery");
 const cols = [];
 cols.push(document.getElementById("imgCol1"),document.getElementById("imgCol2"),document.getElementById("imgCol3"),document.getElementById("imgCol4"));
 
-document.addEventListener('DOMContentLoaded', () => {
+const delay = ms => new Promise(res => setTimeout(res, ms));
+
+
+document.addEventListener('DOMContentLoaded', async () => {
     //TODO if possible, recheck how to do a masonry layout
     //TODO replace 7 with the amount specified in the frontend
 
+    //getPics();
+
+    for(let col of cols){
+        const pics = await getPics();
+        console.log(pics);
+        for(let i = 0; i < count; i++){
+            //const imageUrl = URL.createObjectURL(pics[i]["download_url"]);
+            const imageUrl = pics[i]["download_url"];
+            const imageElement = document.createElement("img");
+            imageElement.classList.add("picture");
+            imageElement.src = imageUrl;
+
+            imageElement.style.setProperty("margin-left", getRandomIntInterval(20, 100) + "px");
+            imageElement.style.setProperty("margin-right", getRandomIntInterval(20, 100) + "px");
+
+            col.appendChild(imageElement);
+        }
+    }
+    /*
     for (let col of cols){
         for(let i = 0; i < count; i++){
             fetch(giveTestURL(), {
@@ -59,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .catch(error => console.error(error));
         }
-    };
+    };*/
 })
 
 //Function for the button
@@ -70,7 +77,7 @@ function reloadCats(){
     //Example:
     ///api/cats?tags=tag1,tag2&skip=0&limit=10
 
-    countTemp = countInput.value;
+    let countTemp = countInput.value;
     if(countTemp !== ""){
         count = countTemp;
     }
