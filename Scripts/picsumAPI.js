@@ -32,7 +32,7 @@ function buildURL(addition, page, params) {
 async function getPics(){
     let randomPage = createRandomPage();
     //console.log(randomPage);
-    const url = buildURL(listAdd, randomPage);
+    const url = buildURL(listAdd, randomPage, "");
 
     //So params being in the above buildURL actually works?? Why did I miss it the first time? This whole fix was unnecessary
     //also it was doubled cuz i had already done it above on buildURL lmao

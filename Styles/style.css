@@ -21,19 +21,8 @@
     box-shadow: 2px 2px 4px rgba(0,0,0,.6);
 }
 
-/*Grid taken from https://codepen.io/Tiago-Carrico/pen/abMojPp*/
-/*His grid == my section with id="gallery" and class="cat-gallery"*/
-/*His item == my img with class="catPicture"*/
-/*maybe i also need to include his grid? idk*/
+/*TODO add cool appearing animation to pictures, so the pictures appearing so erratically due to my bad code isn't so jarring*/
 
-/*
-.cat-gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(8, 1fr));
-    grid-template-rows: repeat(auto-fit, 1fr);
-    grid-auto-flow: row dense;
-    grid-gap: 15px;
-}*/
 
 .cat-gallery{
     display: flex;
