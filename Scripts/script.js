@@ -43,9 +43,41 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     //TODO if possible, recheck how to do a masonry layout
 
-    
+    await createPics();
 
     //TODO still possible to just get 4 times the amount of pictures per column and divide them here
+    
+})
+
+//Function for the button
+async function reloadPics(){
+    console.log("Bravo six, reloading cats");
+    //TODO delete previous cat images and get new ones according to categories/tags
+    //Maybe concatenate color choice and other tags?
+    //Example:
+    ///api/cats?tags=tag1,tag2&skip=0&limit=10
+
+    let countTemp = countInput.value;
+    if(countTemp !== ""){
+        count = countTemp;
+        if(count > 50){
+            count = 50;
+        }
+    };
+
+    //alright this sucessfully deletes everything inside the columns
+    for(let col of cols){
+        col.innerHTML = '';
+    }
+
+
+    await createPics(); //aight its working but just adding more pics, clean the divs before this
+
+    
+
+}
+
+async function createPics(){
     for(let col of cols){
         const pics = await getPics();
         //TODO don't forget to order pics by order criteria
@@ -66,49 +98,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             col.appendChild(imageElement);
         }
     }
-    /*
-    for (let col of cols){
-        for(let i = 0; i < count; i++){
-            fetch(giveTestURL(), {
-                method: 'GET'
-            })
-            .then(response => response.blob())
-            .then(blob => {
-        // Do something with the image data
-                const imageUrl = URL.createObjectURL(blob);
-                const imageElement = document.createElement("img");
-                imageElement.classList.add("catPicture");
-                imageElement.src = imageUrl;
-                //To get a more crooked/homely appearance
-                imageElement.style.setProperty("margin-left", getRandomIntInterval(20, 100) + "px");
-                imageElement.style.setProperty("margin-right", getRandomIntInterval(20, 100) + "px");
-                
-                col.appendChild(imageElement);
-            })
-            .catch(error => console.error(error));
-        }
-    };*/
-})
-
-//Function for the button
-function reloadPics(){
-    console.log("Bravo six, reloading cats");
-    //TODO delete previous cat images and get new ones according to categories/tags
-    //Maybe concatenate color choice and other tags?
-    //Example:
-    ///api/cats?tags=tag1,tag2&skip=0&limit=10
-
-
-    makeQuery();
-
-    let countTemp = countInput.value;
-    if(countTemp !== ""){
-        count = countTemp;
-        if(count > 50){
-            count = 50;
-        }
-    };
-
 }
 
 //Function to make the query to fetch based on the filters set? Or is there a better way to do this?
