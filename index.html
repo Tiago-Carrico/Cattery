@@ -52,7 +52,7 @@
         </div>
     -->
     <form action="" method="get" class="menu">
-        <select name="Preset" id="picPreset">
+        <select name="Preset" id="picPreset" class="menuItem">
             <option value="null" selected="selected">Select a premade preset for the pictures (this will override custom options, leave this option if you want to tinker with the options yourself)</option>
             <option value="veryOld">Very Old</option>
             <option value="old">Old</option>
@@ -62,25 +62,25 @@
 
         <!--TODO put some text saying what each dropdown does please-->
 
-        <select name="GrayScale" id="grayInput">
+        <select name="GrayScale" id="grayInput" class="menuItem">
             <option value="0" selected="selected">Select how many pictures you want to be grayscaled!</option>
             <option value="3">A few</option>
             <option value="10">All</option>
         </select>
 
-        <select name="Blur" id="blurInput">
+        <select name="Blur" id="blurInput" class="menuItem">
             <option value="0" selected="selected">Select how many pictures you want blurred!</option>
             <option value="3">A few</option>
             <option value="10">All</option>
         </select>
 
-        <select name="Order" id="orderCriteria">
+        <select name="Order" id="orderCriteria" class="menuItem">
             <option value="null" selected="selected">Select how the pictures are ordered (leave it as this one if you want a random order)</option>
             <option value="sizeAsc">Size (Ascending)</option>
             <option value="sizeDesc">Size (Descending)</option>
         </select>
-        <input type="text" id="countInput" placeholder="Choose how many pictures per column (max 50)">
-        <input type="button" id="reloadBtn" value="Get new pictures!">
+        <input type="text" id="countInput" placeholder="Choose how many pictures per column (max 50)" class="menuItem">
+        <input type="button" id="reloadBtn" value="Get new pictures!" class="menuItem">
     </form>
 
     <section class="cat-gallery" id="gallery">

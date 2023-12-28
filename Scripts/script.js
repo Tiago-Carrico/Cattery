@@ -41,21 +41,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     //Here is the random wallpaper color generator for the background
     setBackground();
 
-    //TODO if possible, recheck how to do a masonry layout
-
     await createPics();
-
-    //TODO still possible to just get 4 times the amount of pictures per column and divide them here
-    
 })
 
 //Function for the button
 async function reloadPics(){
     console.log("Bravo six, reloading cats");
-    //TODO delete previous cat images and get new ones according to categories/tags
-    //Maybe concatenate color choice and other tags?
-    //Example:
-    ///api/cats?tags=tag1,tag2&skip=0&limit=10
 
     let countTemp = countInput.value;
     if(countTemp !== ""){
@@ -71,18 +62,14 @@ async function reloadPics(){
     }
 
 
-    await createPics(); //aight its working but just adding more pics, clean the divs before this
-
-    
-
+    await createPics();
 }
 
 async function createPics(){
+
     for(let col of cols){
         const pics = await getPics();
-        //TODO don't forget to order pics by order criteria
-        //console.log(pics);
-        //console.log(pics);
+        orderPics(pics);    //can confirm it works, as pics are ordered when option is selected, just can't confirm with console.logs, probably due to the asynchronous nature of the website
         for(let i = 0; i < count; i++){
             //const imageUrl = URL.createObjectURL(pics[i]["download_url"]);
             pics[i]["download_url"] = makeQuery(pics[i]["download_url"]);   //sends the pic for processing in the API
@@ -100,6 +87,40 @@ async function createPics(){
     }
 }
 
+function orderPics(picsArr){
+    let orderCrit = orderInput.value;
+
+    if(orderCrit === "sizeAsc"){
+        //console.log("ordering ascending size")
+        picsArr.sort(compareAsc);
+    }
+    else if(orderCrit === "sizeDesc"){
+        //console.log("ordering descending size");
+        picsArr.sort(compareDesc);
+    }
+    else{
+        return;
+    }
+}
+
+function compareAsc(a, b) {
+    if(a["size"] < b["size"]){
+      return -1;
+    }else if(a["size"] > b["size"]){
+      return 1;
+    }
+    return 0;
+}
+
+function compareDesc(a, b) {
+    if(a["size"] < b["size"]){
+      return 1;
+    }else if(a["size"] > b["size"]){
+      return -1;
+    }
+    return 0;
+}
+
 //Function to make the query to fetch based on the filters set? Or is there a better way to do this?
 function makeQuery(imageUrl){
     //console.log("default image url: " + imageUrl);
@@ -107,16 +128,16 @@ function makeQuery(imageUrl){
     let tempPreset = presetInput.value;
     switch(tempPreset){
         case "null":
-            console.log("No preset selected");
+            //console.log("No preset selected");
             return runParamsFromForm(imageUrl, blurInput.value, grayInput.value);
         case "veryOld":
-            console.log("Very old preset selected, add grayscale to all pictures and some blur");
+            //console.log("Very old preset selected, add grayscale to all pictures and some blur");
             return runParamsFromForm(imageUrl, "5", "10");
         case "old":
-            console.log("Old preset selected, add grayscale pictures");
+            //console.log("Old preset selected, add grayscale pictures");
             return runParamsFromForm(imageUrl, "0", "3");  //only old has some grayscaled, but no blur
         case "recent":
-            console.log("Recent preset selected, don't add grayscale nor blur");
+            //console.log("Recent preset selected, don't add grayscale nor blur");
             return imageUrl;    //since recent is without modifications, we can just send it
     }
 }

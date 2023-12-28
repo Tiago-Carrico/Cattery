@@ -22,7 +22,25 @@
 }
 
 /*TODO add cool appearing animation to pictures, so the pictures appearing so erratically due to my bad code isn't so jarring*/
+.menu{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: solid 1px blue;
 
+}
+
+.menuItem{
+    width: 80%;
+    max-width: 80%;
+    margin-bottom: 1%;
+
+}
+
+#reloadBtn{
+    width: auto;
+}
 
 .cat-gallery{
     display: flex;
