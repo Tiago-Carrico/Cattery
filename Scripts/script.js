@@ -8,11 +8,19 @@ const testRequest = 'https://picsum.photos/300/200';
 
 //Setting up elements vars
 
+const presetInput = document.getElementById("picPreset");
+
+const blurInput = document.getElementById("blurInput");
+
+const grayInput = document.getElementById("grayInput");
+
+const orderInput = document.getElementById("orderCriteria");
+
 const countInput = document.getElementById("countInput");
 let count = 10;
 
 const reloadBtn = document.getElementById("reloadBtn");
-reloadBtn.addEventListener("click", reloadCats);
+reloadBtn.addEventListener("click", reloadPics);
 
 const container = document.getElementById("gallery");
 
@@ -34,11 +42,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     setBackground();
 
     //TODO if possible, recheck how to do a masonry layout
-    //TODO replace 7 with the amount specified in the frontend
 
+    
+
+    //TODO still possible to just get 4 times the amount of pictures per column and divide them here
     for(let col of cols){
         const pics = await getPics();
-        console.log(pics);
+        //TODO don't forget to order pics by order criteria
+
+        //console.log(pics);
         for(let i = 0; i < count; i++){
             //const imageUrl = URL.createObjectURL(pics[i]["download_url"]);
             const imageUrl = pics[i]["download_url"];
@@ -78,23 +90,93 @@ document.addEventListener('DOMContentLoaded', async () => {
 })
 
 //Function for the button
-function reloadCats(){
+function reloadPics(){
     console.log("Bravo six, reloading cats");
     //TODO delete previous cat images and get new ones according to categories/tags
     //Maybe concatenate color choice and other tags?
     //Example:
     ///api/cats?tags=tag1,tag2&skip=0&limit=10
 
+
+    makeQuery();
+
     let countTemp = countInput.value;
     if(countTemp !== ""){
         count = countTemp;
-    }
+        if(count > 50){
+            count = 50;
+        }
+    };
 
 }
 
 //Function to make the query to fetch based on the filters set? Or is there a better way to do this?
 function makeQuery(){
+    let tempPreset = presetInput.value;
+    switch(tempPreset){
+        case "null":
+            console.log("No preset selected");
+            //TODO actually gather the stuff from the form here and pass it to the picsumAPI or something
+            runParamsFromForm("idk fam", blurInput.value, grayInput.value);
 
+            break;
+        case "veryOld":
+            console.log("Very old preset selected, add grayscale to all pictures and some blur");
+            
+
+            break;
+        case "old":
+            console.log("Old preset selected, add grayscale pictures");
+
+
+            break;
+        case "recent":
+            console.log("Recent preset selected, don't add grayscale nor blur");
+
+
+            break;
+    }
 }
 
+//TODO alright so since the api list function doesn't accept optional parameters as a list (can't use blur or grayscale) this function will use the id's of the pics returned and apply that stuff to them
+//This will even allow the previously thought feature of random bluring and grayscaling
+function runParamsFromForm(imageData, blurParam, grayParam){
+
+    if(blurParam === "0" && grayParam === "0"){
+        console.log("squeaky clean");
+        return imageData;
+    } else if(blurParam !== "0" && grayParam === "0"){
+        console.log("some blur " + blurParam);
+    } else if(blurParam === "0" && grayParam !== "0"){
+        console.log("some grayscale " + grayParam);
+    } else {
+        console.log("a bit of both blur: " + blurParam + " gray: " + grayParam);
+    }
+    /*
+    let params = {};
+    if(blurParam === true){
+        params = {
+            ...params,
+            blur: "1"
+        };
+    };
+
+    if(grayParam === true){
+        params = {
+            ...params,
+            grayscale: ""
+        }
+    }*/
+
+    let params = new URLSearchParams();
+    params.append("grayscale", '');
+    //let paramsTest = params.toString().replace('=remove', '');
+    //console.log("paramssTest: " + paramsTest);
+
+    console.log("params: " + params);
+
+    let picsParamTest = getPics(params);
+    console.log(picsParamTest)
+
+}
 

@@ -29,10 +29,24 @@ function buildURL(addition, page, params) {
 }
 
 //TODO don't forget to make sure number of elements is contained in params, also to call one of these for each column, maybe choose different pages for each?
-async function getPics(params){
+async function getPics(){
     let randomPage = createRandomPage();
-    console.log(randomPage);
-    const url = buildURL(listAdd, randomPage,params);
+    //console.log(randomPage);
+    const url = buildURL(listAdd, randomPage);
+
+    //So params being in the above buildURL actually works?? Why did I miss it the first time? This whole fix was unnecessary
+    //also it was doubled cuz i had already done it above on buildURL lmao
+    /*
+    const extraParams = new URLSearchParams({
+        ...params
+    });
+
+    
+    extraParams.forEach((v, k) => {
+        url.searchParams.append(k, v);
+    });*/
+
+    //console.log(url);
     const picList = await fetch(url, {
         method: 'GET'
     })
@@ -40,10 +54,10 @@ async function getPics(params){
     .then(response => {
         //console.log(response);
         return response.map((pic) => {
-            const {author, download_url, height, width} = pic;
+            const {author, download_url, height, width, id} = pic;
             //can pass things correctly like this, so you don't have to parse it all on the main script and it gets better organized
             const size = height * width;
-            return {author, download_url, height, width, size}; //this format is good
+            return {author, download_url, height, width, id, size}; //this format is good
         })
     });
     //console.log(picList);
