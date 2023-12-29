@@ -4,6 +4,15 @@
     --wallpaperColorDark: rgb(25, 110, 50, 1);
 }
 
+h1{
+font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    -webkit-text-stroke: 2px black;
+    display: flex;
+    justify-content: center;
+    font-size: 72px;
+}
+
 
 /*Taken from https://codepen.io/dope/pen/OJOzay*/
 .picture{
@@ -42,6 +51,7 @@
     max-width: 80%;
     margin-bottom: 1%;
     border: solid 1px black;
+    height: 3vh;
     /*border: none;*/
     border-radius: 7px;
     -webkit-border-radius: 7px;
@@ -61,7 +71,7 @@
 
 .old_wallpaper_background{
     z-index: -1;
-    height: 500%;
+    height: 2000%;
     width: 120%;
     background: repeating-linear-gradient(-45deg, var(--wallpaperColorLight), var(--wallpaperColorLight) 75px, var(--wallpaperColorDark) 0, var(--wallpaperColorDark) 150px);
     position: absolute;
