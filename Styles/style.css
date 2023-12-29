@@ -1,7 +1,21 @@
 
+:root{
+    --wallpaperColorLight: rgb(50, 220, 100,1);
+    --wallpaperColorDark: rgb(25, 110, 50, 1);
+}
+
+h1{
+font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    -webkit-text-stroke: 2px black;
+    display: flex;
+    justify-content: center;
+    font-size: 72px;
+}
+
 
 /*Taken from https://codepen.io/dope/pen/OJOzay*/
-.catPicture{
+.picture{
     max-width: 50%;
     max-height: 50%;
     margin: 5px;
@@ -14,25 +28,55 @@
     border-bottom-color: rgba(0, 0, 0, 0.8);
     border-left-color: rgba(0, 0, 0);
     box-shadow: 2px 2px 4px rgba(0,0,0,.6);
+
+    animation: reveal 4s ease;
+    animation-fill-mode: backwards;
 }
 
-/*Grid taken from https://codepen.io/Tiago-Carrico/pen/abMojPp*/
-/*His grid == my section with id="gallery" and class="cat-gallery"*/
-/*His item == my img with class="catPicture"*/
-/*maybe i also need to include his grid? idk*/
+@keyframes reveal{
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
 
-/*
-.cat-gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(8, 1fr));
-    grid-template-rows: repeat(auto-fit, 1fr);
-    grid-auto-flow: row dense;
-    grid-gap: 15px;
-}*/
+/*TODO add cool appearing animation to pictures, so the pictures appearing so erratically due to my bad code isn't so jarring*/
+.menu{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.menuItem{
+    width: 700px;
+    max-width: 80%;
+    margin-bottom: 1%;
+    border: solid 1px black;
+    height: 3vh;
+    /*border: none;*/
+    border-radius: 7px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    -ms-border-radius: 7px;
+    -o-border-radius: 7px;
+}
+
+#reloadBtn{
+    width: auto;
+}
 
 .cat-gallery{
     display: flex;
     flex-direction: row;
+}
+
+.old_wallpaper_background{
+    z-index: -1;
+    height: 2000%;
+    width: 120%;
+    background: repeating-linear-gradient(-45deg, var(--wallpaperColorLight), var(--wallpaperColorLight) 75px, var(--wallpaperColorDark) 0, var(--wallpaperColorDark) 150px);
+    position: absolute;
+    top: 0px;
+    left: 0px;
 }
 
 

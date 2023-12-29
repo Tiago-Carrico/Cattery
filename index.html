@@ -3,17 +3,18 @@
 <head>
 <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>Cat Lady Wall</title>
+  <title>Granny's Art Expo</title>
   <link rel="favicon" type="image/x-icon" href="Assets/Images/favicon.png">
   <link href="Styles/style.css" rel="stylesheet" type="text/css" />
   <link href="Styles/cat_clock.css" rel="stylesheet" type="text/css" />
   <script src="Scripts/script.js" type="module" defer></script>
-  <script src="Scripts/catClock.js" type="module" defer></script>
-
+  <!--
+    <script src="Scripts/catClock.js" type="module" defer></script>
+  -->
 </head>
 
 <body>
-    <section class="menu">
+
         <!--Menus to filter images gotten, filter by:
         - cat position on photo
         - color
@@ -30,6 +31,93 @@
         </select>
         -->
         <!--https://codepen.io/davidlpz/pen/xqVZbg?editors=0010-->
+
+    
+    <div class="container">
+        <div class="clock">
+            <div class="head">
+                <div class="ears"></div>
+                <div class="eyes"></div>
+                <div class="nose"></div>
+                <div class="mouth"></div>
+            </div>
+            <div class="belly">
+                <div class="seconds"></div>
+                <div class="minutes"></div>
+                <div class="hours"></div>
+                <div class="center"></div>
+            </div>
+            <div class="tail"></div>
+        </div>
+    </div>
+    <h1>Granny's "Art Expo"</h1>
+
+    <form action="" method="get" class="menu">
+        <select name="Preset" id="picPreset" class="menuItem">
+            <option value="null" selected="selected">Select a premade preset for the pictures (this will override custom options, leave this option if you want to tinker with the options yourself)</option>
+            <option value="veryOld">Very Old</option>
+            <option value="old">Old</option>
+            <option value="recent">Recent</option>
+
+        </select>
+
+        <!--TODO put some text saying what each dropdown does please-->
+
+        <select name="GrayScale" id="grayInput" class="menuItem">
+            <option value="0" selected="selected">Select how many pictures you want to be grayscaled!</option>
+            <option value="3">A few</option>
+            <option value="10">All</option>
+        </select>
+
+        <select name="Blur" id="blurInput" class="menuItem">
+            <option value="0" selected="selected">Select how many pictures you want blurred!</option>
+            <option value="3">A few</option>
+            <option value="10">All</option>
+        </select>
+
+        <select name="Order" id="orderCriteria" class="menuItem">
+            <option value="null" selected="selected">Select how the pictures are ordered (leave it as this one if you want a random order)</option>
+            <option value="sizeAsc">Size (Ascending)</option>
+            <option value="sizeDesc">Size (Descending)</option>
+        </select>
+        <input type="text" id="countInput" placeholder="Choose how many pictures per column (max 50)" class="menuItem">
+        <input type="button" id="reloadBtn" value="Get new pictures!" class="menuItem">
+    </form>
+
+    <section class="cat-gallery" id="gallery">
+        <!--Done this way cuz its the easier one, and remains decent looking enough-->
+        <div class="galleryColumn" id="imgCol1"></div>
+        <div class="galleryColumn" id="imgCol2"></div>
+        <div class="galleryColumn" id="imgCol3"></div>
+        <div class="galleryColumn" id="imgCol4"></div>
+    </section>
+
+    <div class="old_wallpaper_background" id="bg_wallpaper"></div>
+</body>
+
+</html>
+
+
+
+<!--Old options for the Cat as a Service API, unfortunately it went on a multiple day long not available spree, which as you can understand does not conduct a good development-->
+<!--
+    <section class="menu">
+        Menus to filter images gotten, filter by:
+        - cat position on photo
+        - color
+        - still image or gif
+        - perfectly square image or not
+        - quantity of cats (no more than 20)
+        - TODO: if have time, perhaps even integrate cat gif maker using the API text input
+        - TODO how tf am I gonna introduce ordering? By image size? The API doesn't have much like that
+        -->
+        <!--Template for dropdown menus-->
+        <!--
+        <select name="" id="">
+            <option value="">optionName</option>
+        </select>
+        -->
+        <!--https://codepen.io/davidlpz/pen/xqVZbg?editors=0010
         <div class="container">
             <div class="clock">
                 <div class="head">
@@ -82,13 +170,4 @@
         <input type="button" id="reloadBtn" value="Search Cats!">
     </section>
 
-    <section class="cat-gallery" id="gallery">
-        <!--Done this way cuz its the easier one, and remains decent looking enough-->
-        <div class="galleryColumn" id="imgCol1"></div>
-        <div class="galleryColumn" id="imgCol2"></div>
-        <div class="galleryColumn" id="imgCol3"></div>
-        <div class="galleryColumn" id="imgCol4"></div>
-    </section>
-</body>
-
-</html>
+-->
