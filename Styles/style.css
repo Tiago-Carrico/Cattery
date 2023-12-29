@@ -19,6 +19,14 @@
     border-bottom-color: rgba(0, 0, 0, 0.8);
     border-left-color: rgba(0, 0, 0);
     box-shadow: 2px 2px 4px rgba(0,0,0,.6);
+
+    animation: reveal 4s ease;
+    animation-fill-mode: backwards;
+}
+
+@keyframes reveal{
+    0% {opacity: 0;}
+    100% {opacity: 1;}
 }
 
 /*TODO add cool appearing animation to pictures, so the pictures appearing so erratically due to my bad code isn't so jarring*/
@@ -27,15 +35,19 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: solid 1px blue;
-
 }
 
 .menuItem{
-    width: 80%;
+    width: 700px;
     max-width: 80%;
     margin-bottom: 1%;
-
+    border: solid 1px black;
+    /*border: none;*/
+    border-radius: 7px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    -ms-border-radius: 7px;
+    -o-border-radius: 7px;
 }
 
 #reloadBtn{

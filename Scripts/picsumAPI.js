@@ -24,29 +24,17 @@ function buildURL(addition, page, params) {
     paramsVar.forEach((v, k) => {
         url.searchParams.append(k, v);
     });
-
+    console.log(url);
     return url;
 }
 
 //TODO don't forget to make sure number of elements is contained in params, also to call one of these for each column, maybe choose different pages for each?
-async function getPics(){
+async function getPics(params){
+    console.log("params");
+    console.log(params);
     let randomPage = createRandomPage();
-    //console.log(randomPage);
-    const url = buildURL(listAdd, randomPage, "");
-
-    //So params being in the above buildURL actually works?? Why did I miss it the first time? This whole fix was unnecessary
-    //also it was doubled cuz i had already done it above on buildURL lmao
-    /*
-    const extraParams = new URLSearchParams({
-        ...params
-    });
-
-    
-    extraParams.forEach((v, k) => {
-        url.searchParams.append(k, v);
-    });*/
-
-    //console.log(url);
+    const url = buildURL(listAdd, randomPage, params);
+    console.log(url);
     const picList = await fetch(url, {
         method: 'GET'
     })

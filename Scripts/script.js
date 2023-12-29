@@ -67,8 +67,24 @@ async function reloadPics(){
 
 async function createPics(){
 
+    let paramsTemp = {};
+
+    if(countInput.value > 50 || countInput.value < 0){
+        count = 50;
+        paramsTemp = {
+            ...paramsTemp,
+            limit: count
+        };
+    }else {
+        count = countInput.value;
+        paramsTemp = {
+            ...paramsTemp,
+            limit: count
+        };
+    }
+
     for(let col of cols){
-        const pics = await getPics();
+        const pics = await getPics(paramsTemp);
         orderPics(pics);    //can confirm it works, as pics are ordered when option is selected, just can't confirm with console.logs, probably due to the asynchronous nature of the website
         for(let i = 0; i < count; i++){
             //const imageUrl = URL.createObjectURL(pics[i]["download_url"]);
