@@ -69,8 +69,8 @@ async function createPics(){
 
     let paramsTemp = {};
 
-    if(countInput.value > 50 || countInput.value < 0){
-        count = 50;
+    if(countInput.value > 50 || countInput.value < 0 || countInput.value === ""){
+        count = 10;
         paramsTemp = {
             ...paramsTemp,
             limit: count
